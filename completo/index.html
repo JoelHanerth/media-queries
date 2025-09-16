@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Projeto Responsivo — Desktop & Mobile</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">JR</div>
+        <div>
+          <strong>Projeto Responsivo</strong><br>
+          <small class="muted">Exemplo: Desktop + Mobile</small>
+        </div>
+      </div>
+
+      <nav class="nav-desktop">
+        <a href="#">Início</a>
+        <a href="#">Funcionalidades</a>
+        <a href="#">Contato</a>
+      </nav>
+
+      <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-nav" id="toggleBtn">☰</button>
+      <nav class="mobile-nav" id="mobile-nav">
+        <a href="#">Início</a>
+        <a href="#">Funcionalidades</a>
+        <a href="#">Contato</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div>
+        <h1>Layout responsivo com media queries</h1>
+        <p class="hero-text">Este projeto usa a abordagem mobile-first: estilos básicos funcionam bem em celulares e, usando media queries, o layout se adapta para telas maiores (tablet/desktops).</p>
+      </div>
+      <div class="hero-button">
+        <button>Experimente</button>
+      </div>
+    </section>
+
+    <main>
+      <div class="grid" id="cards">
+        <article class="card">
+          <h3>Card 1</h3>
+          <p>Um exemplo de card. Em telas pequenas os cards ficam empilhados; em telas maiores aparecem lado a lado.</p>
+        </article>
+        <article class="card">
+          <h3>Card 2</h3>
+          <p>Você pode ajustar a propriedade grid-template-columns dentro da media query para controlar quantas colunas aparecem.</p>
+        </article>
+        <article class="card">
+          <h3>Card 3</h3>
+          <p>Tente redimensionar a janela do navegador para ver as mudanças — ou abra no celular para a versão mobile.</p>
+        </article>
+      </div>
+    </main>
+
+    <footer>
+      © Projeto Responsivo — feito com ♥. Redimensione ou teste em um dispositivo mobile.
+    </footer>
+  </div>
+
+  <script>
+    const btn = document.getElementById('toggleBtn');
+    const nav = document.getElementById('mobile-nav');
+    btn.addEventListener('click', ()=>{
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      nav.style.display = open ? 'none' : 'flex';
+    });
+
+    window.matchMedia('(min-width:768px)').addEventListener('change', e=>{
+      if(e.matches){ 
+        nav.style.display = 'none';
+        btn.setAttribute('aria-expanded','false');
+      }
+    });
+  </script>
+</body>
+</html>
